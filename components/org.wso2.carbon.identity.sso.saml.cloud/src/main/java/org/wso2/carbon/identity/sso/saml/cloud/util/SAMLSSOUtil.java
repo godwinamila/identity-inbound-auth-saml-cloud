@@ -1276,7 +1276,12 @@ public class SAMLSSOUtil {
                         for (Property prop : config.getProperties()) {
                             properties.put(prop.getName(), prop);
                         }
-                        ssoIdpConfigs.setIssuer(properties.get(SAMLSSOConstants.SAMLFormFields.ISSUER).getValue());
+                        if (properties.get(SAMLSSOConstants.SAMLFormFields.ISSUER) != null && StringUtils
+                                .isNotBlank(properties.get(SAMLSSOConstants.SAMLFormFields.ISSUER).getValue())) {
+                            ssoIdpConfigs.setIssuer(properties.get(SAMLSSOConstants
+                                    .SAMLFormFields.ISSUER).getValue());
+                        }
+
                         if (properties.get(SAMLSSOConstants.SAMLFormFields.ACS_URLS) != null && StringUtils
                                 .isNotBlank(properties.get(SAMLSSOConstants.SAMLFormFields.ACS_URLS).getValue())) {
                             ssoIdpConfigs.setAssertionConsumerUrls(properties.get(SAMLSSOConstants.SAMLFormFields
